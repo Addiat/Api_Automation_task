@@ -1,0 +1,259 @@
+{
+	"info": {
+		"_postman_id": "93a96d19-fb21-4306-971c-e89df81a0175",
+		"name": "Adiat Ishola Linux Api test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get_todo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c789d7f5-8053-4f57-8a20-679f38860718",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.globals.get(\"variable_key\");",
+							"pm.environment.set(\"variable_key\", \"variable_value\");",
+							"pm.sendRequest(\"https://postman-echo.com/get\", function (err, response) {",
+							"    console.log(response.json());",
+							"});",
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"string_you_want_to_search\");",
+							"});",
+							"pm.test(\"Response time is less than 200ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://demo.fusio-project.org/index.php/todo",
+					"protocol": "https",
+					"host": [
+						"demo",
+						"fusio-project",
+						"org"
+					],
+					"path": [
+						"index.php",
+						"todo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get_single todo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d55848d9-a0d0-46cd-8a8c-d1569efc83f5",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.sendRequest(\"https://postman-echo.com/get\", function (err, response) {",
+							"    console.log(response.json());",
+							"});",
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"string_you_want_to_search\");",
+							"});",
+							"var schema = {",
+							"    \"items\": {",
+							"        \"type\": \"boolean\"",
+							"    }",
+							"};",
+							"var data1 = [true, false];",
+							"var data2 = [true, 123];",
+							"pm.test('Schema is valid', function () {",
+							"    pm.expect(tv4.validate(data1, schema)).to.be.true;",
+							"    pm.expect(tv4.validate(data2, schema)).to.be.true;",
+							"});",
+							"var jsonObject = xml2Json(responseBody);",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://demo.fusio-project.org/index.php/todo/?todo_id=2",
+					"protocol": "https",
+					"host": [
+						"demo",
+						"fusio-project",
+						"org"
+					],
+					"path": [
+						"index.php",
+						"todo",
+						""
+					],
+					"query": [
+						{
+							"key": "todo_id",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post_todo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5b92d86d-dd0e-4eef-b144-35f6c43608ce",
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);",
+							"});",
+							"pm.environment.set(\"variable_key\", \"variable_value\");",
+							"pm.sendRequest(\"https://postman-echo.com/get\", function (err, response) {",
+							"    console.log(response.json());",
+							"});",
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"string_you_want_to_search\");",
+							"});",
+							"pm.test(\"Your test name\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.value).to.eql(100);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://reqres.in/api/user",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put_update user record",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "894341ad-fdab-4620-9910-64dc6caed8a3",
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);",
+							"});",
+							"pm.globals.set(\"variable_key\", \"variable_value\");",
+							"pm.sendRequest(\"https://postman-echo.com/get\", function (err, response) {",
+							"    console.log(response.json());",
+							"});",
+							"pm.test(\"Status code name has string\", function () {",
+							"    pm.test(\"Your test name\", function () {",
+							"        var jsonData = pm.response.json();",
+							"        pm.expect(jsonData.value).to.eql(100);",
+							"    });",
+							"    pm.response.to.have.status(\"Created\");",
+							"});",
+							"var jsonObject = xml2Json(responseBody);",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "https://reqres.in/api/user/2",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"user",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete_user record",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0ec7d25d-8f31-4928-94ee-bebe2f05eda4",
+						"exec": [
+							"pm.test(\"Status code is 204\", function() {",
+							"    pm.response.to.have.status(204);",
+							"});",
+							"pm.globals.set(\"variable_key\", \"variable_value\");",
+							"pm.test(\"Body is correct\", function () {",
+							"    pm.response.to.have.body(\"response_body_string\");",
+							"});",
+							"pm.test(\"Response time is less than 200ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://reqres.in/api/users/2/user/{id}",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users",
+						"2",
+						"user",
+						"{id}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
